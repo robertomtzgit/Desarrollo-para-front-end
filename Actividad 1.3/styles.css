@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #3498db;
+}
+
+form {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.habilidades-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.habilidades-container label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.habilidades-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    margin-bottom: 0;
+}
+
+button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+}
+
+.success {
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 5px rgba(46, 204, 113, 0.5);
+}
+
+#catalogoFutbolistas {
+    margin-top: 40px;
+}
+
+#catalogoFutbolistas h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+.tarjeta-futbolista {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.tarjeta-futbolista:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta-contenido {
+    display: flex;
+    padding: 20px;
+}
+
+.jugador-imagen {
+    flex: 0 0 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.jugador-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    border: 3px solid #3498db;
+    padding: 5px;
+    background-color: #f9f9f9;
+}
+
+.jugador-detalles {
+    flex: 1;
+}
+
+.jugador-detalles h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #f1c40f;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jugador-detalles h3 span {
+    background-color: #3498db;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.8em;
+}
+
+.jugador-detalles p {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.jugador-detalles strong {
+    color: #3498db;
+}
+
+.btn-eliminar {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    margin: 0;
+}
+
+.btn-eliminar:hover {
+    ackground-color: #c0392b;
+}
+
+@media (max-width: 768px) {
+    .tarjeta-contenido {
+        flex-direction: column;
+    }
+
+    .jugador-imagen {
+        margin-right: 0;
+        margin-bottom: 15px;
+        flex: 0 0 auto;
+    }
+
+    .jugador-imagen img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .habilidades-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
