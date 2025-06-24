@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro de Futbolista</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+    <h1>Formulario de Registro de Futbolista</h1>
+
+    <form id="formularioFutbolista">
+
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" placeholder="Ej. Lionel Messi" />
+
+        <label for="dorsal">Número (dorsal):</label>
+        <input type="number" id="dorsal" placeholder="Ej. 10" min="1" />
+
+        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+        <input type="date" id="fechaNacimiento" />
+
+        <label for="lugarNacimiento">Lugar de nacimiento:</label>
+        <input type="text" id="lugarNacimiento" placeholder="Ej. Rosario, Argentina" />
+
+        <label for="nacionalidad">Nacionalidad:</label>
+        <input type="text" id="nacionalidad" placeholder="Ej. Argentina" />
+
+        <label for="altura">Altura (cm):</label>
+        <input type="number" id="altura" placeholder="Ej. 170" min="1" />
+
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" placeholder="Ej. 72" min="1" />
+
+        <label for="pie">Pie dominante:</label>
+        <select id="pie">
+        <option value="">-- Selecciona una opción --</option>
+        <option value="derecho">Derecho</option>
+        <option value="izquierdo">Izquierdo</option>
+        <option value="ambidiestro">Ambidiestro</option>
+        </select>
+
+        <label for="posicion">Posición en el campo:</label>
+        <select id="posicion">
+        <option value="">-- Selecciona una posición --</option>
+        <option value="PO">Portero</option>
+        <option value="DFC">Defensa central</option>
+        <option value="LD">Lateral derecho</option>
+        <option value="LI">Lateral izquierdo</option>
+        <option value="MCD">Medio centro defensivo</option>
+        <option value="MC">Medio centro</option>
+        <option value="MI">Medio izquierdo</option>
+        <option value="MD">Medio derecho</option>
+        <option value="EI">Extremo izquierdo</option>
+        <option value="ED">Extremo derecho</option>
+        <option value="DC">Delantero centro</option>
+        </select>
+
+        <label>Habilidades destacadas:</label>
+        <div class="habilidades-container">
+            <label><input type="checkbox" name="habilidades" value="velocidad" /> Velocidad</label>
+            <label><input type="checkbox" name="habilidades" value="regate" /> Regate</label>
+            <label><input type="checkbox" name="habilidades" value="pase" /> Pase</label>
+            <label><input type="checkbox" name="habilidades" value="tiro" /> Tiro</label>
+            <label><input type="checkbox" name="habilidades" value="defensa" /> Defensa</label>
+            <label><input type="checkbox" name="habilidades" value="aceleracion" /> Aceleración</label>
+            <label><input type="checkbox" name="habilidades" value="sprint" /> Sprint</label>
+            <label><input type="checkbox" name="habilidades" value="resistencia" /> Resistencia</label>
+            <label><input type="checkbox" name="habilidades" value="salto" /> Salto</label>
+            <label><input type="checkbox" name="habilidades" value="reflejos" /> Reflejos</label>
+            <label><input type="checkbox" name="habilidades" value="definicion" /> Definición</label>
+            <label><input type="checkbox" name="habilidades" value="remateLejano" /> Remate lejano</label>
+        </div>
+
+        <label for="equiposAnteriores">Equipos anteriores:</label>
+        <textarea id="equiposAnteriores" rows="3" placeholder="Ej. FC Barcelona, PSG, Inter Miami"></textarea>
+
+        <label for="descripcion">Descripción general del jugador:</label>
+        <textarea id="descripcion" rows="4" placeholder="Describe estilo, trayectoria, puntos fuertes, etc."></textarea>
+
+        <button type="button" id="btnRegistrar">Registrar Futbolista</button>
+
+    </form>
+
+    <div id="catalogoFutbolistas">
+        <h2>Catálogo de Futbolistas Registrados</h2>
+
+        <div id="contenedorBotones">
+            <button type="button" id="btnVaciarLista" class="btn-vaciar-todo">
+                🗑️ Vaciar Lista Completa
+            </button>
+        </div>
+        
+        <div id="listaFutbolistas">
+            <!-- Aqui agregamos las tarjetas dinamicamente -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
