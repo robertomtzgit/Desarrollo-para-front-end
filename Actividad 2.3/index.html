@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online - Programación Asíncrona</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    
+    <div class="container">
+        <header>
+            <h1>🛍️ Tienda Online</h1>
+            <p>Demostración de Programación Asíncrona en JavaScript</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <button id="loadProductsBtn" class="btn btn-primary">
+                    📦 Cargar Productos (Promises)
+                </button>
+                <button id="loadUsersBtn" class="btn btn-secondary">
+                    👥 Cargar Usuarios (Async/Await)
+                </button>
+                <button id="clearBtn" class="btn btn-danger">
+                    🗑️ Limpiar
+                </button>
+            </div>
+
+            <div id="statusMessage" class="status-message"></div>
+
+            <div id="loadingSpinner" class="loading-spinner hidden">
+                <div class="spinner"></div>
+                <p>Cargando datos...</p>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+
+            <div id="dataContainer" class="data-container">
+                <div id="productsGrid" class="products-grid"></div>
+                <div id="usersList" class="users-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Desarrollado para la materia de Desarrollo Frontend</p>
+            <p>Tecnologías: HTML5, CSS3, JavaScript </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
