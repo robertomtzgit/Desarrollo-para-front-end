@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦇 Gestión de Autos - Sistema AJAX</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <h1>🦇 Sistema de Gestión de Autos de Batman 🦇</h1>
+    </header>
+
+    <!-- Controles -->
+    <div class="controls-panel">
+        <div class="control-group">
+            <label for="buscar">🔎 Buscar:</label>
+            <input type="text" id="buscar" placeholder="Buscar auto..." class="search-input">
+        </div>
+        
+        <div class="control-group">
+            <label for="cantidad">📊 Mostrar:</label>
+            <select id="cantidad" class="select-control">
+                <option value="5">5 registros</option>
+                <option value="10" selected>10 registros</option>
+                <option value="20">20 registros</option>
+                <option value="50">50 registros</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label for="orden">📈 Ordenar por:</label>
+            <select id="orden" class="select-control">
+                <option value="id">ID</option>
+                <option value="marca">Marca</option>
+                <option value="modelo">Modelo</option>
+                <option value="anio">Año</option>
+                <option value="precio">Precio</option>
+                <option value="kilometraje">Kilometraje</option>
+            </select>
+            <select id="direccion" class="select-control">
+                <option value="ASC">⬆️ Ascendente</option>
+                <option value="DESC">⬇️ Descendente</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <button id="refrescar" class="btn btn-secondary">🔄 Actualizar</button>
+            <button id="nuevo-auto" class="btn btn-success">➕ Nuevo Auto</button>
+        </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats-panel">
+        <div class="stat-item">
+            <span class="stat-label">Total de registros:</span>
+            <span id="total-registros" class="stat-value">0</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Página actual:</span>
+            <span id="pagina-actual" class="stat-value">1</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Total de páginas:</span>
+            <span id="total-paginas" class="stat-value">1</span>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <span>Cargando datos...</span>
+    </div>
+
+    <!-- Tabla -->
+    <div class="table-container">
+        <table class="autos-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>Color</th>
+                    <th>Precio</th>
+                    <th>Combustible</th>
+                    <th>Transmisión</th>
+                    <th>Estado</th>
+                    <th>Km</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-autos">
+                <!-- Aquí se cargan los autos vía AJAX -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="paginacion" class="pagination"></div>
+
+    <!-- Formulario Modal -->
+    <div id="modal-form" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="form-titulo">➕ Agregar Auto</h2>
+                <span class="close-modal">&times;</span>
+            </div>
+            <form id="form-auto" class="auto-form">
+                <input type="hidden" id="id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="marca">Marca:</label>
+                        <input type="text" id="marca" placeholder="Ej: Toyota" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modelo">Modelo:</label>
+                        <input type="text" id="modelo" placeholder="Ej: Corolla" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="anio">Año:</label>
+                        <input type="number" id="anio" placeholder="2023" min="1900" max="2024" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="color">Color:</label>
+                        <input type="text" id="color" placeholder="Ej: Blanco" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" id="precio" placeholder="250000" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="combustible">Combustible:</label>
+                        <select id="combustible" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Gasolina">Gasolina</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Híbrido">Híbrido</option>
+                            <option value="Eléctrico">Eléctrico</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="transmision">Transmisión:</label>
+                        <select id="transmision" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automática">Automática</option>
+                            <option value="CVT">CVT</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <select id="estado" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Nuevo">Nuevo</option>
+                            <option value="Usado">Usado</option>
+                            <option value="Seminuevo">Seminuevo</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kilometraje">Kilometraje:</label>
+                        <input type="number" id="kilometraje" placeholder="0" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="version">Versión:</label>
+                        <input type="text" id="version" placeholder="Ej: XEI 1.8L" required>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" id="cancelar" class="btn btn-secondary">Cancelar</button>
+                    <button type="submit" id="guardar" class="btn btn-primary">💾 Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mensajes -->
+    <div id="message-container" class="message-container"></div>
+
+    <!-- jQuery DEBE ir antes de script.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
