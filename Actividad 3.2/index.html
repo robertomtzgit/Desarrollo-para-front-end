@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla Dinámica de Autos - jQuery</title>
+    
+    <!-- jQuery UI CSS Theme (Smoothness) -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- jQuery y jQuery UI desde CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Tabla Dinámica de Autos</h1>
+        </header>
+
+        <div class="controls-panel">
+            <div class="control-group">
+                <label for="search-input">Buscar:</label>
+                <input type="text" id="search-input" placeholder="Buscar por marca, modelo, color...">
+            </div>
+            
+            <div class="control-group">
+                <label for="records-per-page">Registros por página:</label>
+                <select id="records-per-page">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            
+            <div class="info-panel">
+                <span id="total-records">Total de registros: 0</span>
+                <span id="showing-records">Mostrando: 0 - 0</span>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="autos-table" class="ui-widget ui-widget-content">
+                <thead class="ui-widget-header">
+                    <tr>
+                        <th data-column="marca" class="sortable">
+                            Marca <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="modelo" class="sortable">
+                            Modelo <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="año" class="sortable">
+                            Año <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="color" class="sortable">
+                            Color <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="precio" class="sortable">
+                            Precio <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="tipo" class="sortable">
+                            Tipo <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="transmision" class="sortable">
+                            Transmisión <span class="sort-icon">↕</span>
+                        </th>
+                        <th data-column="combustible" class="sortable">
+                            Combustible <span class="sort-icon">↕</span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Los datos se cargaran dinamicamente aqui -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination-container">
+            <div id="pagination-controls">
+                <!-- Los controles de paginacion se generaran dinamicamente -->
+            </div>
+        </div>
+
+        <div id="loading-message" class="loading">
+            Cargando datos...
+        </div>
+
+        <div id="error-message" class="error" style="display: none;">
+            Error al cargar los datos. Por favor, verifica que el archivo XML esté disponible.
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
