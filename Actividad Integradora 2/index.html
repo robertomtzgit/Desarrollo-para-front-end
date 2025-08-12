@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Usuarios y Tareas - Programación Asíncrona</title>
+    <meta name="description" content="Aplicación web para gestionar usuarios y tareas usando fetch API y programación asíncrona">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Encabezado principal -->
+    <header>
+        <h1>Gestor de Usuarios y Tareas</h1>
+        <p class="subtitle">Aplicación con programación asíncrona y Fetch API</p>
+    </header>
+
+    <main>
+        <!-- Sección de usuarios -->
+        <section class="usuarios-section" aria-labelledby="titulo-usuarios">
+            <h2 id="titulo-usuarios">Lista de Usuarios</h2>
+            
+            <!-- Formulario de búsqueda -->
+            <form class="search-form" role="search" aria-label="Buscar usuarios">
+                <div class="search-container">
+                    <label for="busquedaUsuario" class="sr-only">Buscar usuario por nombre</label>
+                    <input 
+                        type="text" 
+                        id="busquedaUsuario" 
+                        placeholder="Buscar usuario por nombre..." 
+                        aria-describedby="search-help"
+                        autocomplete="off"
+                    >
+                    <button type="button" id="btnBuscar" aria-label="Ejecutar búsqueda">
+                        🔍 Buscar
+                    </button>
+                    <button type="button" id="btnLimpiar" aria-label="Limpiar búsqueda">
+                        ✖️ Limpiar
+                    </button>
+                </div>
+                <small id="search-help" class="help-text">
+                    Escribe el nombre del usuario que deseas encontrar
+                </small>
+            </form>
+
+            <!-- Indicador de carga para usuarios -->
+            <div id="loadingUsuarios" class="loading" aria-live="polite">
+                <div class="spinner"></div>
+                <span>Cargando usuarios...</span>
+            </div>
+
+            <!-- Mensaje de error para usuarios -->
+            <div id="errorUsuarios" class="error-message" role="alert" style="display: none;">
+                <span class="error-icon">⚠️</span>
+                <span class="error-text"></span>
+                <button type="button" id="btnReintentarUsuarios" class="retry-btn">Reintentar</button>
+            </div>
+
+            <!-- Tabla de usuarios -->
+            <div class="table-container">
+                <table id="tablaUsuarios" role="table" aria-label="Lista de usuarios">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Correo Electrónico</th>
+                            <th scope="col">Ciudad</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los usuarios se insertan dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Mensaje cuando no hay resultados -->
+            <div id="noResultados" class="no-results" style="display: none;">
+                <span class="no-results-icon">🔍</span>
+                <p>No se encontraron usuarios que coincidan con tu búsqueda.</p>
+            </div>
+        </section>
+
+        <!-- Sección de tareas -->
+        <section id="seccionTareas" class="tareas-section" style="display: none;" aria-labelledby="titulo-tareas">
+            <h2 id="tituloTareas">Tareas del usuario</h2>
+            
+            <!-- Filtros para tareas -->
+            <div class="filters-container">
+                <label for="filtroEstado">Filtrar por estado:</label>
+                <select id="filtroEstado" aria-describedby="filter-help">
+                    <option value="todos">Todas las tareas</option>
+                    <option value="completadas">Solo completadas</option>
+                    <option value="pendientes">Solo pendientes</option>
+                </select>
+                <small id="filter-help" class="help-text">
+                    Filtra las tareas según su estado de completado
+                </small>
+            </div>
+
+            <!-- Indicador de carga para tareas -->
+            <div id="loadingTareas" class="loading" aria-live="polite" style="display: none;">
+                <div class="spinner"></div>
+                <span>Cargando tareas...</span>
+            </div>
+
+            <!-- Mensaje de error para tareas -->
+            <div id="errorTareas" class="error-message" role="alert" style="display: none;">
+                <span class="error-icon">⚠️</span>
+                <span class="error-text"></span>
+                <button type="button" id="btnReintentarTareas" class="retry-btn">Reintentar</button>
+            </div>
+
+            <!-- Estadísticas de tareas -->
+            <div id="estadisticasTareas" class="stats-container" style="display: none;">
+                <div class="stat-item">
+                    <span class="stat-number" id="totalTareas">0</span>
+                    <span class="stat-label">Total</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="tareasCompletadas">0</span>
+                    <span class="stat-label">Completadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="tareasPendientes">0</span>
+                    <span class="stat-label">Pendientes</span>
+                </div>
+            </div>
+
+            <!-- Tabla de tareas -->
+            <div class="table-container">
+                <table id="tablaTareas" role="table" aria-label="Lista de tareas del usuario">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Título de la Tarea</th>
+                            <th scope="col">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Las tareas se insertan dinámicamente aquí -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Botón para volver a usuarios -->
+            <button type="button" id="btnVolverUsuarios" class="back-btn">
+                ← Volver a la lista de usuarios
+            </button>
+        </section>
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>Actividad Integradora 2 de Desarrollo Frontend - Programación Asíncrona con Fetch API</p>
+        <p>Datos obtenidos de: <a href="https://jsonplaceholder.typicode.com/" target="_blank" rel="noopener">JSONPlaceholder</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

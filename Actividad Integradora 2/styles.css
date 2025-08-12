@@ -1,0 +1,393 @@
+/* ===== RESET BÁSICO ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== ESTILOS BASE ===== */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== ACCESIBILIDAD ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 0;
+    background-color: #1e40af;
+    color: white;
+    border-radius: 8px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== SECCIONES ===== */
+section {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    color: #1e40af;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3b82f6;
+}
+
+/* ===== FORMULARIO DE BÚSQUEDA ===== */
+.search-form {
+    margin-bottom: 25px;
+}
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+}
+
+#busquedaUsuario {
+    flex: 1;
+    min-width: 300px;
+    padding: 12px 16px;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+#busquedaUsuario:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.help-text {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* ===== BOTONES ===== */
+button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2563eb;
+}
+
+button:focus {
+    outline: 2px solid #1d4ed8;
+    outline-offset: 2px;
+}
+
+#btnLimpiar {
+    background-color: #6b7280;
+}
+
+#btnLimpiar:hover {
+    background-color: #4b5563;
+}
+
+.back-btn {
+    background-color: #1e40af;
+    margin-top: 20px;
+}
+
+.back-btn:hover {
+    background-color: #1e3a8a;
+}
+
+.retry-btn {
+    background-color: #dc2626;
+    padding: 8px 16px;
+    font-size: 12px;
+}
+
+.retry-btn:hover {
+    background-color: #b91c1c;
+}
+
+/* ===== FILTROS ===== */
+.filters-container {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.filters-container label {
+    color: #1e40af;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+#filtroEstado {
+    padding: 8px 12px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#filtroEstado:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+/* ===== ESTADÍSTICAS ===== */
+.stats-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    background-color: #1e40af;
+    color: white;
+    padding: 20px;
+    border-radius: 6px;
+    text-align: center;
+    flex: 1;
+    min-width: 120px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* ===== TABLAS ===== */
+.table-container {
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th {
+    background-color: #1e40af;
+    color: white;
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 14px;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* ===== INDICADORES DE CARGA ===== */
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 40px;
+    color: #6b7280;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e5e7eb;
+    border-top: 2px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===== MENSAJES DE ERROR ===== */
+.error-message {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 15px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.error-icon {
+    font-size: 18px;
+}
+
+.error-text {
+    flex: 1;
+    font-weight: 500;
+}
+
+/* ===== SIN RESULTADOS ===== */
+.no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+}
+
+.no-results-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.no-results p {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+footer a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    .search-container {
+        flex-direction: column;
+    }
+
+    #busquedaUsuario {
+        min-width: 100%;
+    }
+
+    .stats-container {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    th,
+    td {
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    th,
+    td {
+        padding: 6px 4px;
+        font-size: 11px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+}
