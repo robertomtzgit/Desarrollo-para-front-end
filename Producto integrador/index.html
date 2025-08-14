@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>CodeFlix - Portal de Películas</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <h1 class="logo">CodeFlix</h1>
+            </div>
+            <div class="menu-container">
+                <ul class="menu-list">
+                    <li class="menu-list-item active" data-category="trending">Trending</li>
+                    <li class="menu-list-item" data-category="popular">Populares</li>
+                    <li class="menu-list-item" data-category="top_rated">Mejor Calificadas</li>
+                    <li class="menu-list-item" data-category="upcoming">Próximos Estrenos</li>
+                    <li class="menu-list-item" data-category="favorites">Mis Favoritos</li>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar películas..." class="search-input" aria-label="Buscar películas">
+                    <button id="searchBtn" class="search-btn" aria-label="Botón de búsqueda">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <i class="left-menu-icon fas fa-search" title="Buscar" id="sidebarSearchIcon"></i>
+        <i class="left-menu-icon fas fa-home" title="Inicio" id="sidebarHomeIcon"></i>
+        <i class="left-menu-icon fas fa-heart" title="Favoritos" id="favoritesIcon"></i>
+        <i class="left-menu-icon fas fa-chart-bar" title="Estadísticas" id="statsIcon"></i>
+        <i class="left-menu-icon fas fa-filter" title="Filtros" id="filtersIcon"></i>
+    </div>
+
+    <!-- Container Principal -->
+    <div class="container">
+        <div class="content-container">
+            <!-- Loading Spinner -->
+            <div id="loadingSpinner" class="loading-spinner" role="status" aria-live="polite">
+                <div class="spinner"></div>
+                <p>Cargando películas...</p>
+            </div>
+
+            <!-- Featured Content -->
+            <div class="featured-content" id="featuredContent" role="region" aria-label="Película destacada">
+                <h2 class="featured-movie-title" id="featuredMovieTitle"></h2>
+                <p class="featured-desc" id="featuredDesc"></p>
+                <div class="featured-info">
+                    <span class="featured-rating" id="featuredRating"></span>
+                    <span class="featured-date" id="featuredDate"></span>
+                </div>
+                <div class="featured-buttons">
+                    <button class="featured-button" id="watchBtn" aria-label="Ver ahora">
+                        <i class="fas fa-play" aria-hidden="true"></i> VER AHORA
+                    </button>
+                    <button class="featured-button secondary" id="addToFavBtn" aria-label="Agregar a favoritos">
+                        <i class="fas fa-heart" aria-hidden="true"></i> FAVORITOS
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="filters-container" id="filtersContainer" style="display: none;" role="group" aria-labelledby="filters-heading">
+                <h3 id="filters-heading">Filtrar por:</h3>
+                <div class="filter-options">
+                    <select id="genreFilter" aria-label="Filtrar por género">
+                        <option value="">Todos los géneros</option>
+                    </select>
+                    <select id="yearFilter" aria-label="Filtrar por año">
+                        <option value="">Todos los años</option>
+                    </select>
+                    <select id="ratingFilter" aria-label="Filtrar por calificación">
+                        <option value="">Todas las calificaciones</option>
+                        <option value="8">8+ estrellas</option>
+                        <option value="7">7+ estrellas</option>
+                        <option value="6">6+ estrellas</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Movie Lists Container -->
+            <div id="movieListsContainer" role="main" aria-label="Listas de películas">
+                <!-- Las listas se generarán dinámicamente -->
+            </div>
+
+            <!-- Modal para detalles de película -->
+            <div id="movieModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+                <div class="modal-content">
+                    <span class="close" aria-label="Cerrar">&times;</span>
+                    <div class="modal-body">
+                        <img id="modalPoster" class="modal-poster" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='450'%3E%3Crect width='100%25' height='100%25' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23fff'%3EPóster no disponible%3C/text%3E%3C/svg%3E" alt="Póster de la película">
+                        <div class="modal-info">
+                            <h2 id="modalTitle"></h2>
+                            <p id="modalOverview"></p>
+                            <div class="modal-details">
+                                <p><strong>Fecha de estreno:</strong> <span id="modalDate"></span></p>
+                                <p><strong>Calificación:</strong> <span id="modalRating"></span></p>
+                                <p><strong>Géneros:</strong> <span id="modalGenres"></span></p>
+                                <p><strong>Duración:</strong> <span id="modalRuntime"></span></p>
+                            </div>
+                            <div id="ratingChart" class="rating-chart">
+                                <div class="rating-circle">
+                                    <div class="rating-text">
+                                        <span id="ratingValue">0</span>
+                                        <small>/10</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal para estadísticas -->
+            <div id="statsModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="statsModalTitle">
+                <div class="modal-content">
+                    <span class="close" aria-label="Cerrar">&times;</span>
+                    <div class="modal-body">
+                        <h2 id="statsModalTitle">Estadísticas de Películas</h2>
+                        <div id="genreChart" class="genre-chart">
+                            <!-- Gráfico de géneros se generará aquí -->
+                        </div>
+                        <div class="stats-info">
+                            <p><strong>Total de favoritos:</strong> <span id="totalFavorites">0</span></p>
+                            <p><strong>Género favorito:</strong> <span id="favoriteGenre">-</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación personalizada -->
+    <div id="customNotification" class="custom-notification">
+        <div class="notification-content">
+            <i class="notification-icon"></i>
+            <span class="notification-text"></span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 CodeFlix. Proyecto Integrador - Desarrollo Front-End.</p>
+            <p>Integrantes del equipo:</p>
+            <p>Mirella Stephania Palomera Gómez<br>
+            Marco Alejandro González Mireles<br>
+            Yosef Sánchez Gutiérrez<br>
+            Roberto Carlos Martínez Aviña</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
